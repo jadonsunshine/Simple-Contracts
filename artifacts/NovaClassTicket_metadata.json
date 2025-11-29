@@ -1,0 +1,472 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_passPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_passDurationDays",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "InsufficientPayment",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NoAccess",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "WithdrawalFailed",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "expiryTime",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "pricePaid",
+						"type": "uint256"
+					}
+				],
+				"name": "AccessPurchased",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newDuration",
+						"type": "uint256"
+					}
+				],
+				"name": "DurationUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "FundsWithdrawn",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "PriceUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "buyPass",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getTimeRemaining",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "hasAccess",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "myAccess",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "passDuration",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "passExpiry",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "passPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newDurationDays",
+						"type": "uint256"
+					}
+				],
+				"name": "updateDuration",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "updatePrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "weiAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "weiToEther",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Time-bound access pass system with expiry mechanism",
+			"events": {
+				"AccessPurchased(address,uint256,uint256)": {
+					"params": {
+						"buyer": "Address of the pass purchaser",
+						"expiryTime": "Timestamp when the pass expires",
+						"pricePaid": "Amount paid for the pass"
+					}
+				},
+				"DurationUpdated(uint256)": {
+					"params": {
+						"newDuration": "New duration in seconds"
+					}
+				},
+				"FundsWithdrawn(address,uint256)": {
+					"params": {
+						"amount": "Amount withdrawn",
+						"owner": "Address of the owner"
+					}
+				},
+				"PriceUpdated(uint256)": {
+					"params": {
+						"newPrice": "New price in wei"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"buyPass()": {
+					"details": "Extends existing pass if user already has one"
+				},
+				"constructor": {
+					"params": {
+						"_passDurationDays": "Duration of pass validity in days",
+						"_passPrice": "Price of access pass in wei"
+					}
+				},
+				"getBalance()": {
+					"returns": {
+						"_0": "uint256 Current balance in wei"
+					}
+				},
+				"getTimeRemaining(address)": {
+					"params": {
+						"user": "Address to check"
+					},
+					"returns": {
+						"_0": "uint256 Seconds remaining (0 if expired)"
+					}
+				},
+				"hasAccess(address)": {
+					"params": {
+						"user": "Address to check"
+					},
+					"returns": {
+						"_0": "bool True if user has active access, false otherwise"
+					}
+				},
+				"myAccess()": {
+					"returns": {
+						"_0": "bool True if caller has active access"
+					}
+				},
+				"updateDuration(uint256)": {
+					"params": {
+						"_newDurationDays": "New duration in days"
+					}
+				},
+				"updatePrice(uint256)": {
+					"params": {
+						"_newPrice": "New price in wei"
+					}
+				},
+				"weiToEther(uint256)": {
+					"params": {
+						"weiAmount": "Amount in wei"
+					},
+					"returns": {
+						"_0": "uint256 Amount in ether (with 18 decimals)"
+					}
+				}
+			},
+			"title": "NovaClassTicket",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"AccessPurchased(address,uint256,uint256)": {
+					"notice": "Emitted when a user purchases an access pass"
+				},
+				"DurationUpdated(uint256)": {
+					"notice": "Emitted when pass duration is updated"
+				},
+				"FundsWithdrawn(address,uint256)": {
+					"notice": "Emitted when owner withdraws funds"
+				},
+				"PriceUpdated(uint256)": {
+					"notice": "Emitted when pass price is updated"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"buyPass()": {
+					"notice": "Purchase an access pass"
+				},
+				"constructor": {
+					"notice": "Initializes the contract with price and duration"
+				},
+				"getBalance()": {
+					"notice": "Get contract balance"
+				},
+				"getTimeRemaining(address)": {
+					"notice": "Get remaining time on a user's pass"
+				},
+				"hasAccess(address)": {
+					"notice": "Check if an address has valid access"
+				},
+				"myAccess()": {
+					"notice": "Check current user's access status"
+				},
+				"owner()": {
+					"notice": "Contract owner address"
+				},
+				"passDuration()": {
+					"notice": "Duration of access in seconds (e.g., 30 days = 30 * 24 * 60 * 60)"
+				},
+				"passExpiry(address)": {
+					"notice": "Mapping from user address to pass expiry timestamp"
+				},
+				"passPrice()": {
+					"notice": "Price to purchase an access pass (in wei)"
+				},
+				"updateDuration(uint256)": {
+					"notice": "Update the duration of access passes"
+				},
+				"updatePrice(uint256)": {
+					"notice": "Update the price of access passes"
+				},
+				"weiToEther(uint256)": {
+					"notice": "Convert wei to ether for easy reading"
+				},
+				"withdraw()": {
+					"notice": "Withdraw contract balance to owner"
+				}
+			},
+			"notice": "Users can purchase access passes that expire after a set duration",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/NovaClassTicket.sol": "NovaClassTicket"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/NovaClassTicket.sol": {
+			"keccak256": "0xe38559599608844d2ea9aeb6d3927f6046578ca278a4724107d772e4f3c55049",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4c93bda6a19973b5a098fd48d9b4127fec3caaae95647b1c6c051a35423f8ac4",
+				"dweb:/ipfs/QmSEqBZCmW5QvD4EpHbWPJNQqfkFFuiD45SZPjUPkaQXyR"
+			]
+		}
+	},
+	"version": 1
+}
